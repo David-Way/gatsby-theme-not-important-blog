@@ -9,6 +9,14 @@
 @import 'core/typography';
 @import 'core/utilities';
 @import 'core/global';
+
+//* LAYOUT *//
+@import 'layout/stack';
+@import 'layout/sidebar';
+@import 'layout/center';
+@import 'layout/cluster';
+@import 'layout/box';
+
 //* COMPONENTS *//
 @import 'component/link';
 @import 'component/tag';
