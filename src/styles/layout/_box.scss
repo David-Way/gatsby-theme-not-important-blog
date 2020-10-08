@@ -1,0 +1,30 @@
+@import '../core/import-once';
+@import '../core/variables';
+
+@mixin box {
+  .l-box {
+    --color-light: var(--cds-ui-0);
+    --color-dark: var(--cds-text-01);
+    color: var(--color-dark);
+    background-color: var(--color-light);
+  
+    & * {
+      color: inherit;
+    }
+
+    &--inverted {
+      color: var(--color-light);
+      background-color: var(--color-dark);
+    }
+  }
+
+  @each $key, $value in $spacing {
+    .l-box--padding\:#{$key} {
+      padding: $value !important;
+    }
+  }
+}
+
+@include exports('box') {
+  @include box();
+}

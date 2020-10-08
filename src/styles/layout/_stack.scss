@@ -1,0 +1,25 @@
+@import '../core/import-once';
+@import '../core/variables';
+
+@mixin stack {
+  .l-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .l-stack > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @each $key, $value in $spacing {
+    .l-stack--spacing\:#{$key} > * + * {
+      margin-top: $value !important;
+    }
+  }
+}
+
+@include exports('stack') {
+  @include stack();
+}

@@ -1,0 +1,44 @@
+@import '../core/import-once';
+@import '../core/variables';
+
+@mixin cluster {
+  $justifications: 'start', 'center', 'space-between', 'space-around', 'space-evenly';
+  $alignments: 'stretch', 'center', 'start', 'end';
+
+  .l-cluster {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  @each $justification in $justifications {
+    .l-cluster--justify\:#{$justification} {
+      justify-content: #{$justification};
+    }
+  }
+
+  @each $alignment in $alignments {
+    .l-cluster--align\:#{$alignment} {
+      align-items: #{$alignment};
+    }
+  }
+
+  @each $key, $value in $spacing {
+    .l-cluster--spacing\:#{$key} {
+      margin: calc(#{$value} / 2 * -1);
+    }
+
+    .l-cluster--spacing\:#{$key} > * {
+      margin: calc(#{$value} / 2);
+    }
+  }
+}
+
+@include exports('cluster') {
+  @include cluster();
+}
