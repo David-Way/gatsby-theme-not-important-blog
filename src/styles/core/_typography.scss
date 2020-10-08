@@ -1,0 +1,64 @@
+@import '../core/import-once';
+@import '../core/variables';
+@import '../core/mixins';
+
+@mixin typography {
+  html {
+    font-family: $font-family;
+  }
+  
+  blockquote {
+    margin: 0;
+    padding-left: map-get($spacing, 'base');
+    border-left: .25em solid var(--cds-ui-03);
+  }
+
+  h1,
+  .u-h1 {
+    @include h1;
+  }
+
+  h2,
+  .u-h2 {
+    @include h2;
+  }
+
+  h3,
+  .u-h3 {
+    @include h3;
+  }
+
+  h4,
+  .u-h4,
+  h5,
+  .u-h5,
+  h5,
+  .u-h5,
+  h6,
+  .u-h6 {
+    @include h4;
+  }
+
+  p,
+  .u-body {
+    font-size: map-get($body, 'font-size');
+    line-height: map-get($body, 'line-height');
+    font-weight: map-get($body, 'font-weight');
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a {
+    max-width: $text-max-width;
+  }
+}
+
+@include exports('typography') {
+  @include typography();
+}

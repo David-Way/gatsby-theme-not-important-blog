@@ -1,0 +1,15 @@
+//* EXTERNAL *//
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap');
+@import '@carbon/themes/scss/themes';
+
+//* CORE *//
+@import 'core/import-once';
+@import 'core/variables';
+@import 'core/mixins';
+@import 'core/typography';
+@import 'core/utilities';
+@import 'core/global';
+//* COMPONENTS *//
+@import 'component/link';
+@import 'component/tag';
+@import 'component/header';

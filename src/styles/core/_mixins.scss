@@ -1,0 +1,23 @@
+@mixin h1 {
+  font-size: map-get($h1-font, 'font-size');
+  line-height: map-get($h1-font, 'line-height');
+  font-weight: map-get($h1-font, 'font-weight');
+}
+
+@mixin h2 {
+  font-size: map-get($h2-font, 'font-size');
+  line-height: map-get($h2-font, 'line-height');
+  font-weight: map-get($h2-font, 'font-weight');
+}
+
+@mixin h3 {
+  font-size: map-get($h3-font, 'font-size');
+  line-height: map-get($h3-font, 'line-height');
+  font-weight: map-get($h3-font, 'font-weight');
+}
+
+@mixin h4 {
+  font-size: map-get($h4-font, 'font-size');
+  line-height: map-get($h4-font, 'line-height');
+  font-weight: map-get($h4-font, 'font-weight');
+}

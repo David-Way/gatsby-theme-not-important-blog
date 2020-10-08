@@ -1,0 +1,10 @@
+@import '../core/import-once';
+@import '../core/variables';
+
+@mixin utilities {
+  // TODO
+}
+
+@include exports('utilities') {
+  @include utilities();
+}

@@ -1,0 +1,15 @@
+@import '../core/import-once';
+@import '../core/variables';
+
+@mixin header {
+  .c-header {
+    &__title {
+      @include h3;
+      color: var(--cds-interactive-01);
+    }
+  }
+}
+
+@include exports('header') {
+  @include header();
+}
