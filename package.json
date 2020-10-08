@@ -1,0 +1,43 @@
+{
+  "name": "gatsby-theme-not-important-blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "david way",
+  "license": "MIT",
+  "peerDependencies": {
+    "@carbon/themes": "^10.20.0",
+    "@mdx-js/loader": "^1.6.18",
+    "@mdx-js/mdx": "^1.6.18",
+    "@mdx-js/react": "^1.6.18",
+    "classnames": "^2.2.6",
+    "gatsby": "^2.24.67",
+    "gatsby-plugin-mdx": "^1.2.43",
+    "gatsby-plugin-page-creator": "^2.3.30",
+    "gatsby-plugin-react-helmet": "^3.3.13",
+    "gatsby-plugin-sass": "^2.3.16",
+    "gatsby-source-filesystem": "^2.3.32",
+    "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0"
+  },
+  "devDependencies": {
+    "@carbon/themes": "^10.20.0",
+    "@mdx-js/loader": "^1.6.18",
+    "@mdx-js/mdx": "^1.6.18",
+    "@mdx-js/react": "^1.6.18",
+    "classnames": "^2.2.6",
+    "gatsby": "^2.24.67",
+    "gatsby-plugin-mdx": "^1.2.43",
+    "gatsby-plugin-page-creator": "^2.3.30",
+    "gatsby-plugin-react-helmet": "^3.3.13",
+    "gatsby-plugin-sass": "^2.3.16",
+    "gatsby-source-filesystem": "^2.3.32",
+    "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0"
+  }
+}
