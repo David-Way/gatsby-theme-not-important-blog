@@ -1,0 +1,22 @@
+@import '../core/import-once';
+@import '../core/variables';
+
+@mixin link {
+  .c-link {
+    color: var(--cds-link-01);
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:visited {
+      color: var(--cds-visited-link);
+    }
+
+    &:focus {
+      outline: 1px solid var(--cds-focus,#0f62fe);
+    }
+  }
+}
+
+@include exports('link') {
+  @include link();
+}
