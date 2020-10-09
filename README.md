@@ -18,9 +18,15 @@ gatsby new gatsby-site https://github.com/gatsbyjs/gatsby-starter-hello-world
 cd gatsby-site
 ```
 
-### Install @davidway/gatsby-theme-not-important-blog and it's dependencies
+### Install @davidway/gatsby-theme-not-important-blogá
 ```shell
-npm install @davidway/gatsby-theme-not-important-blog @carbon/themes @mdx-js/loader @mdx-js/mdx @mdx-js/react classnames gatsby gatsby-plugin-mdx gatsby-plugin-page-creator gatsby-plugin-react-helmet gatsby-plugin-sass gatsby-source-filesystem node-sass prop-types react react-dom react-helmet
+npm install @davidway/gatsby-theme-not-important-blog
+```
+
+or
+
+```shell
+yarn add @davidway/gatsby-theme-not-important-blog
 ```
 
 Then add the theme to your `gatsby-config.js`. We'll use the long-form
