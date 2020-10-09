@@ -18,9 +18,15 @@ gatsby new gatsby-site https://github.com/gatsbyjs/gatsby-starter-hello-world
 cd gatsby-site
 ```
 
-### Install @davidway/gatsby-theme-not-important-blog and it's dependencies
+### Install @davidway/gatsby-theme-not-important-blogá
 ```shell
-npm install @davidway/gatsby-theme-not-important-blog @carbon/themes @mdx-js/loader @mdx-js/mdx @mdx-js/react classnames gatsby gatsby-plugin-mdx gatsby-plugin-page-creator gatsby-plugin-react-helmet gatsby-plugin-sass gatsby-source-filesystem node-sass prop-types react react-dom react-helmet
+npm install @davidway/gatsby-theme-not-important-blog
+```
+
+or
+
+```shell
+yarn add @davidway/gatsby-theme-not-important-blog
 ```
 
 Then add the theme to your `gatsby-config.js`. We'll use the long-form
@@ -32,6 +38,11 @@ module.exports = {
     title: `Creed Thoughts`,
     siteUrl: `https://www.creedthoughts.com`,
     description: `Creed thoughts`,
+    navigation: [
+      { url: '/', title: 'Home' },
+      { url: '/blog', title: 'Blog' },
+      { url: '/about', title: 'About' },
+    ]
   },
   plugins: [
     {
@@ -83,11 +94,47 @@ resources error. Create a simple page in `src/pages/index.js` to see a
 page on the root url.
 
 ```jsx
-import React from "react"
+// src/pages/index.js
+import React from "react";
+import { graphql } from "gatsby";
+import { 
+  Stack,
+  Box,
+  Center,
+  Header,
+  Link,
+} from "@davidway/gatsby-theme-not-important-blog";
 
-export default function Home() {
-  return <div>My Site!</div>
+export default function Home({ data }) {
+  return (
+    <Box padding="medium">
+      <Center>
+        <Stack spacing="medium">
+          <Header
+            title={data.site.siteMetadata.title}
+            navigation={data.site.siteMetadata.navigation}
+          />
+          <main>
+            <p>Hello world!</p>
+          </main>
+          <footer>
+            <Link to="/">Back</Link>
+          </footer>
+        </Stack>
+      </Center>
+    </Box>
+  );
 }
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 ```
 
 ## Importing components from the theme
