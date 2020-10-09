@@ -4,7 +4,10 @@
   "main": "index.js",
   "author": "david way",
   "license": "MIT",
-  "peerDependencies": {
+  "scripts": {
+    "publish": "npm publish --access public"
+  },
+  "dependencies": {
     "@carbon/themes": "^10.20.0",
     "@mdx-js/loader": "^1.6.18",
     "@mdx-js/mdx": "^1.6.18",
