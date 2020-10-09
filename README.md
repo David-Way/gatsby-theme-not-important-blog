@@ -32,6 +32,11 @@ module.exports = {
     title: `Creed Thoughts`,
     siteUrl: `https://www.creedthoughts.com`,
     description: `Creed thoughts`,
+    navigation: [
+      { url: '/', title: 'Home' },
+      { url: '/blog', title: 'Blog' },
+      { url: '/about', title: 'About' },
+    ]
   },
   plugins: [
     {
@@ -83,11 +88,47 @@ resources error. Create a simple page in `src/pages/index.js` to see a
 page on the root url.
 
 ```jsx
-import React from "react"
+// src/pages/index.js
+import React from "react";
+import { graphql } from "gatsby";
+import { 
+  Stack,
+  Box,
+  Center,
+  Header,
+  Link,
+} from "@davidway/gatsby-theme-not-important-blog";
 
-export default function Home() {
-  return <div>My Site!</div>
+export default function Home({ data }) {
+  return (
+    <Box padding="medium">
+      <Center>
+        <Stack spacing="medium">
+          <Header
+            title={data.site.siteMetadata.title}
+            navigation={data.site.siteMetadata.navigation}
+          />
+          <main>
+            <p>Hello world!</p>
+          </main>
+          <footer>
+            <Link to="/">Back</Link>
+          </footer>
+        </Stack>
+      </Center>
+    </Box>
+  );
 }
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 ```
 
 ## Importing components from the theme
