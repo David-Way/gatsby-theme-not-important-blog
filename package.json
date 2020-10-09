@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-theme-not-important-blog",
-  "version": "1.0.0",
+  "name": "@davidway/gatsby-theme-not-important-blog",
+  "version": "1.0.1",
   "main": "index.js",
-  "author": "david way",
+  "author": "David Way",
   "license": "MIT",
   "scripts": {
     "publish": "npm publish --access public"
