@@ -3,7 +3,36 @@ import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Box, Center, Cluster, Header, Stack, Link, Tag } from '../components/index';
-const shortcodes = { a: Link }; // Provide common components here
+import Highlight, { defaultProps } from "prism-react-renderer";
+import github from 'prism-react-renderer/themes/github';
+
+const shortcodes = { 
+  a: Link,
+  pre: props => {
+    const className = props.children.props.className || '';
+    const matches = className.match(/language-(?<lang>.*)/);
+    return (
+      <Highlight 
+        {...defaultProps}
+        theme={github}
+        code={props.children.props.children.trim()}
+        language={ matches && matches.groups && matches.groups.lang ? matches.groups.lang : '' }
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <div {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
+    );
+  }
+}; // Provide common components here
 
 export default function PageTemplate({ data: { mdx, site } }) {
   return (
@@ -22,7 +51,9 @@ export default function PageTemplate({ data: { mdx, site } }) {
         <Box padding="medium">
           <Stack spacing="medium">
             <Stack spacing="small">
-              <Link to="/blog">Back</Link>
+              <span>
+                <Link to="/blog">Back</Link>
+              </span>
               <h1>{mdx.frontmatter.title}</h1>
             </Stack>
             <MDXProvider components={shortcodes}>
