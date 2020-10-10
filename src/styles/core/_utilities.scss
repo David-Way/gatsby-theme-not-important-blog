@@ -2,7 +2,69 @@
 @import '../core/variables';
 
 @mixin utilities {
-  // TODO
+  @each $key, $value in $spacing {
+    // Margin
+    .u-m\:#{$key} {
+      margin: $value !important;
+    }
+
+    .u-mv\:#{$key} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+
+    .u-mh\:#{$key} {
+      margin-left: $value !important;
+      margin-right: $value !important;
+    }
+
+    .u-mt\:#{$key} {
+      margin-top: $value !important;
+    }
+
+    .u-mr\:#{$key} {
+      margin-right: $value !important;
+    }
+
+    .u-mb\:#{$key} {
+      margin-bottom: $value !important;
+    }
+
+    .u-ml\:#{$key} {
+      margin-left: $value !important;
+    }
+
+    // Padding
+    .u-p\:#{$key} {
+      padding: $value !important;
+    }
+
+    .u-pv\:#{$key} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+
+    .u-ph\:#{$key} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+
+    .u-pt\:#{$key} {
+      padding-top: $value !important;
+    }
+
+    .u-pr\:#{$key} {
+      padding-right: $value !important;
+    }
+
+    .u-pb\:#{$key} {
+      padding-bottom: $value !important;
+    }
+
+    .u-pl\:#{$key} {
+      padding-left: $value !important;
+    }
+  }
 }
 
 @include exports('utilities') {
