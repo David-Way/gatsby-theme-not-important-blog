@@ -3,6 +3,7 @@ export { default as Stack } from './layout/Stack';
 export { default as Center } from './layout/Center';
 export { default as Sidebar } from './layout/Sidebar';
 export { default as Cluster } from './layout/Cluster';
+export { default as Reel } from './layout/Reel';
 export { default as Box } from './layout/Box';
 
 /* COMPONENTS */

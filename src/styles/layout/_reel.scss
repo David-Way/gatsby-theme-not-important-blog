@@ -1,0 +1,47 @@
+@import '../core/import-once';
+@import '../core/variables';
+
+@mixin reel {
+  .l-reel {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-color: var(--cds-interactive-01) var(--cds-ui-background);
+
+    &::-webkit-scrollbar {
+      height: map-get($spacing, base);
+    }
+    
+    &::-webkit-scrollbar-track {
+      background-color: var(--cds-ui-background);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--cds-ui-background);
+      background-image: linear-gradient(var(--cds-ui-background) 0, var(--cds-ui-backgroundk) 0.25rem, var(--cds-interactive-01) 0.25rem, var(--cds-interactive-01) 0.75rem, var(--cds-ui-background) 0.75rem);
+    }
+
+    > * {
+      margin-right: 0;
+      min-width: 40%;
+    }
+
+    &::after {
+      content: '';
+      flex-basis: map-get($spacing, base);
+    }
+
+    &.js-is-overflowing {
+      padding-bottom: map-get($spacing, base);
+    }
+  }
+
+  @each $key, $value in $spacing {
+    .l-reel--spacing\:#{$key} > * {
+      margin: $value;
+    }
+  }
+}
+
+@include exports('reel') {
+  @include reel();
+}
