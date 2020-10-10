@@ -201,6 +201,105 @@ export const query = graphql`
 `;
 ```
 
+<detail>
+  <summary>Blog list page example</summary>
+  ```jsx
+  import React from "react";
+  import { graphql } from "gatsby";
+  import { 
+    Stack,
+    Box,
+    Center,
+    Header,
+    Card,
+    Cluster,
+    Link,
+  } from "gatsby-theme-not-important-blog";
+
+  export default function Blog({ data: { site, allMdx: { nodes: posts }} }) {
+    return (
+      <Stack spacing="medium">
+        <Center>
+          <Box padding="medium">
+            <Header
+              title={site.siteMetadata.title}
+              titleUrl={site.siteMetadata.siteUrl}
+              navigation={site.siteMetadata.navigation}
+            />
+          </Box>
+        </Center>
+
+        <Center as="main">
+          {posts && posts.length >= 2 && (
+            <>
+              <Box padding="medium" className="u-pb:none">
+                <Cluster justify="space-between" spacing="base">
+                  <h2>Posts</h2>
+                </Cluster>
+              </Box>
+
+              <Box padding="medium" className="u-pb:none">
+                <Stack spacing="x-large">
+                  {posts.map((post) => {
+                    return (
+                      <Card
+                        {...(post.slug ? { to: `/blog/${post.slug}` } : {})}
+                        {...(post.frontmatter.title ? { title: post.frontmatter.title } : {})}
+                        {...(post.frontmatter.date || post.frontmatter.meta ? { meta: [post.frontmatter.date,...post.frontmatter.tags] } : {})}
+                        {...(post.frontmatter.extract ? { body: post.frontmatter.extract } : {})}
+                      />
+                    );
+                  })}
+                </Stack>
+              </Box>
+            </>
+          )}
+        </Center>
+
+        <Center>
+          <Box as="footer" padding="medium">
+            <Cluster as="nav" justify="space-between" spacing="base" aria-label="footer">
+              <Cluster justify="flex-start" spacing="base">
+                <Link to="/blog">github</Link>
+                <Link to="/blog">twitter</Link>
+                <Link to="/blog">stack overflow</Link>
+              </Cluster>
+              <Link to="/blog">rss</Link>
+            </Cluster>
+          </Box>
+        </Center>
+      </Stack>
+    );
+  };
+
+  export const query = graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          siteUrl
+          navigation {
+            title
+            url
+          }
+        }
+      }
+      allMdx(sort: {order: ASC, fields: frontmatter___date}) {
+        nodes {
+          slug
+          frontmatter {
+            title
+            date
+            extract
+            tags
+          }
+        }
+      }
+    }
+  `;
+  ```
+</details>
+
 ## Importing components from the theme
 
 This theme provides a number of React components that can be imported and used in your own pages. The full list of components can be found in the [theme components folder](https://github.com/David-Way/gatsby-theme-not-important-blog/tree/master/src/components).
