@@ -7,6 +7,7 @@ export { default as Reel } from './layout/Reel';
 export { default as Box } from './layout/Box';
 
 /* COMPONENTS */
+export { default as Card } from './Card';
 export { default as Header } from './Header';
 export { default as Link } from './Link';
 export { default as Tag } from './Tag';
