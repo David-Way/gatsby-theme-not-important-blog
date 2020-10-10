@@ -12,7 +12,7 @@
     }
 
     &:focus {
-      outline: 1px solid var(--cds-focus,#0f62fe);
+      @include focus-outline;
     }
   }
 }

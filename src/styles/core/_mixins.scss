@@ -21,3 +21,7 @@
   line-height: map-get($h4-font, 'line-height');
   font-weight: map-get($h4-font, 'font-weight');
 }
+
+@mixin focus-outline {
+  outline: 2px solid var(--cds-focus,#0f62fe);
+}

@@ -20,7 +20,7 @@
 
   @each $key, $value in $spacing {
     .l-box--padding\:#{$key} {
-      padding: $value !important;
+      padding: $value;
     }
   }
 }
