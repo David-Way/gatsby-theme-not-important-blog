@@ -92,6 +92,10 @@ Note that this site doesn't _do_ anything, so you're seeing a missing
 resources error. Create a simple page in `src/pages/index.js` to see a
 page on the root url.
 
+#### Example pages
+
+##### Index
+
 ```jsx
 // src/pages/index.js
 import React from "react";
@@ -201,104 +205,104 @@ export const query = graphql`
 `;
 ```
 
-<detail>
-  <summary>Blog list page example</summary>
-  ```jsx
-  import React from "react";
-  import { graphql } from "gatsby";
-  import { 
-    Stack,
-    Box,
-    Center,
-    Header,
-    Card,
-    Cluster,
-    Link,
-  } from "gatsby-theme-not-important-blog";
+##### Blog list page
 
-  export default function Blog({ data: { site, allMdx: { nodes: posts }} }) {
-    return (
-      <Stack spacing="medium">
-        <Center>
-          <Box padding="medium">
-            <Header
-              title={site.siteMetadata.title}
-              titleUrl={site.siteMetadata.siteUrl}
-              navigation={site.siteMetadata.navigation}
-            />
-          </Box>
-        </Center>
+```jsx
+// Blog list page example
+import React from "react";
+import { graphql } from "gatsby";
+import { 
+  Stack,
+  Box,
+  Center,
+  Header,
+  Card,
+  Cluster,
+  Link,
+} from "gatsby-theme-not-important-blog";
 
-        <Center as="main">
-          {posts && posts.length >= 2 && (
-            <>
-              <Box padding="medium" className="u-pb:none">
-                <Cluster justify="space-between" spacing="base">
-                  <h2>Posts</h2>
-                </Cluster>
-              </Box>
+export default function Blog({ data: { site, allMdx: { nodes: posts }} }) {
+  return (
+    <Stack spacing="medium">
+      <Center>
+        <Box padding="medium">
+          <Header
+            title={site.siteMetadata.title}
+            titleUrl={site.siteMetadata.siteUrl}
+            navigation={site.siteMetadata.navigation}
+          />
+        </Box>
+      </Center>
 
-              <Box padding="medium" className="u-pb:none">
-                <Stack spacing="x-large">
-                  {posts.map((post) => {
-                    return (
-                      <Card
-                        {...(post.slug ? { to: `/blog/${post.slug}` } : {})}
-                        {...(post.frontmatter.title ? { title: post.frontmatter.title } : {})}
-                        {...(post.frontmatter.date || post.frontmatter.meta ? { meta: [post.frontmatter.date,...post.frontmatter.tags] } : {})}
-                        {...(post.frontmatter.extract ? { body: post.frontmatter.extract } : {})}
-                      />
-                    );
-                  })}
-                </Stack>
-              </Box>
-            </>
-          )}
-        </Center>
-
-        <Center>
-          <Box as="footer" padding="medium">
-            <Cluster as="nav" justify="space-between" spacing="base" aria-label="footer">
-              <Cluster justify="flex-start" spacing="base">
-                <Link to="/blog">github</Link>
-                <Link to="/blog">twitter</Link>
-                <Link to="/blog">stack overflow</Link>
+      <Center as="main">
+        {posts && posts.length >= 2 && (
+          <>
+            <Box padding="medium" className="u-pb:none">
+              <Cluster justify="space-between" spacing="base">
+                <h2>Posts</h2>
               </Cluster>
-              <Link to="/blog">rss</Link>
-            </Cluster>
-          </Box>
-        </Center>
-      </Stack>
-    );
-  };
+            </Box>
 
-  export const query = graphql`
-    query {
-      site {
-        siteMetadata {
+            <Box padding="medium" className="u-pb:none">
+              <Stack spacing="x-large">
+                {posts.map((post) => {
+                  return (
+                    <Card
+                      {...(post.slug ? { to: `/blog/${post.slug}` } : {})}
+                      {...(post.frontmatter.title ? { title: post.frontmatter.title } : {})}
+                      {...(post.frontmatter.date || post.frontmatter.meta ? { meta: [post.frontmatter.date,...post.frontmatter.tags] } : {})}
+                      {...(post.frontmatter.extract ? { body: post.frontmatter.extract } : {})}
+                    />
+                  );
+                })}
+              </Stack>
+            </Box>
+          </>
+        )}
+      </Center>
+
+      <Center>
+        <Box as="footer" padding="medium">
+          <Cluster as="nav" justify="space-between" spacing="base" aria-label="footer">
+            <Cluster justify="flex-start" spacing="base">
+              <Link to="/blog">github</Link>
+              <Link to="/blog">twitter</Link>
+              <Link to="/blog">stack overflow</Link>
+            </Cluster>
+            <Link to="/blog">rss</Link>
+          </Cluster>
+        </Box>
+      </Center>
+    </Stack>
+  );
+};
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+        siteUrl
+        navigation {
           title
-          siteUrl
-          navigation {
-            title
-            url
-          }
-        }
-      }
-      allMdx(sort: {order: ASC, fields: frontmatter___date}) {
-        nodes {
-          slug
-          frontmatter {
-            title
-            date
-            extract
-            tags
-          }
+          url
         }
       }
     }
-  `;
-  ```
-</details>
+    allMdx(sort: {order: ASC, fields: frontmatter___date}) {
+      nodes {
+        slug
+        frontmatter {
+          title
+          date
+          extract
+          tags
+        }
+      }
+    }
+  }
+`;
+```
 
 ## Importing components from the theme
 
@@ -315,6 +319,6 @@ import {
   Header, // Site header
   Link, // Links to locations
   Tag, // Displays meta information
-  Card, // Summary link
+  Card, // Summary link card
 } from "@davidway/gatsby-theme-not-important-blog";
 ```
