@@ -57,6 +57,10 @@
   a {
     max-width: $text-max-width;
   }
+
+  pre {
+    overflow-x: auto;
+  }
 }
 
 @include exports('typography') {

@@ -1,6 +1,6 @@
 {
   "name": "@davidway/gatsby-theme-not-important-blog",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "author": "David Way",
   "license": "MIT",
@@ -20,6 +20,7 @@
     "gatsby-plugin-sass": "^2.3.16",
     "gatsby-source-filesystem": "^2.3.32",
     "node-sass": "^4.14.1",
+    "prism-react-renderer": "^1.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
