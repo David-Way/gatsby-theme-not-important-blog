@@ -74,7 +74,6 @@ tags:
 - unordered
 - list
 
-
 > This is a quote
 
 This a sentence with _emphasis_.
@@ -101,40 +100,105 @@ import {
   Stack,
   Box,
   Center,
+  Reel,
   Header,
+  Card,
+  Cluster,
   Link,
-} from "@davidway/gatsby-theme-not-important-blog";
+} from "gatsby-theme-not-important-blog";
 
-export default function Home({ data }) {
+export default function Home({ data: { site, allMdx: { nodes: posts }} }) {
   return (
-    <Box padding="medium">
+    <Stack spacing="medium">
       <Center>
-        <Stack spacing="medium">
+        <Box padding="medium">
           <Header
-            title={data.site.siteMetadata.title}
-            navigation={data.site.siteMetadata.navigation}
+            title={site.siteMetadata.title}
+            titleUrl={site.siteMetadata.siteUrl}
+            navigation={site.siteMetadata.navigation}
           />
-          <main>
-            <p>Hello world!</p>
-          </main>
-          <footer>
-            <Link to="/">Back</Link>
-          </footer>
-        </Stack>
+        </Box>
       </Center>
-    </Box>
+
+      <Center as="main">
+        {posts && posts.length > 0 && (
+          <Box padding="medium">
+            <h2 className="u-mt:none">Recent post</h2>
+            <Card
+              {...(posts[0].slug ? { to: `/blog/${posts[0].slug}` } : {})}
+              {...(posts[0].frontmatter.title ? { title: posts[0].frontmatter.title } : {})}
+              {...(posts[0].frontmatter.date || posts[0].frontmatter.meta ? { meta: [posts[0].frontmatter.date,...posts[0].frontmatter.tags] } : {})}
+              {...(posts[0].frontmatter.extract ? { body: posts[0].frontmatter.extract } : {})}
+            />
+          </Box>
+        )}
+
+        {posts && posts.length >= 2 && (
+          <>
+            <Box padding="medium" className="u-pb:none">
+              <Cluster justify="space-between" spacing="base">
+                <h2>Other posts</h2>
+                <Link to="/blog">See all posts</Link>
+              </Cluster>
+            </Box>
+
+            <Reel spacing="medium">
+              {posts.slice(1).map((post) => {
+                return (
+                  <Card
+                    {...(post.slug ? { to: `/blog/${post.slug}` } : {})}
+                    {...(post.frontmatter.title ? { title: post.frontmatter.title } : {})}
+                    {...(post.frontmatter.date || post.frontmatter.meta ? { meta: [post.frontmatter.date,...post.frontmatter.tags] } : {})}
+                    {...(post.frontmatter.extract ? { body: post.frontmatter.extract } : {})}
+                  />
+                );
+              })}
+            </Reel>
+          </>
+        )}
+      </Center>
+
+      <Center>
+        <Box as="footer" padding="medium">
+          <Cluster as="nav" justify="space-between" spacing="base" aria-label="footer">
+            <Cluster justify="flex-start" spacing="base">
+              <Link to="/blog">github</Link>
+              <Link to="/blog">twitter</Link>
+              <Link to="/blog">stack overflow</Link>
+            </Cluster>
+            <Link to="/blog">rss</Link>
+          </Cluster>
+        </Box>
+      </Center>
+    </Stack>
   );
-}
+};
 
 export const query = graphql`
   query {
     site {
       siteMetadata {
         title
+        siteUrl
+        navigation {
+          title
+          url
+        }
+      }
+    }
+    allMdx(sort: {order: ASC, fields: frontmatter___date}) {
+      nodes {
+        slug
+        frontmatter {
+          title
+          date
+          extract
+          tags
+        }
       }
     }
   }
-`
+`;
 ```
 
 ## Importing components from the theme
@@ -148,8 +212,10 @@ import {
   Box, // Layout component - contains content
   Center, // Layout component - centers content
   Cluster, // Layout component - flexibly places and spaces horizontal elements
+  Reel, // Layout component - Horizontal scroll area
   Header, // Site header
   Link, // Links to locations
   Tag, // Displays meta information
+  Card, // Summary link
 } from "@davidway/gatsby-theme-not-important-blog";
 ```

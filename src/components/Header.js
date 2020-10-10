@@ -1,9 +1,15 @@
 import React from 'react';
+import classnames from 'classnames';
 import { Cluster, Link } from './index';
 
-export default function Header ({ title, titleUrl, navigation }) {
+export default function Header ({ className, title, titleUrl, navigation }) {
+  const styleClass = classnames(
+    'c-header',
+    className,
+  );
+
   return (
-    <Cluster className="c-header" as="header" justify="space-between" spacing="base">
+    <Cluster className={styleClass} as="header" justify="space-between" spacing="base">
       <Link className="c-header__title" to={titleUrl}><strong>{title}</strong></Link>
       <nav>
         <Cluster as="ul" justify="flex-start" spacing="base">
