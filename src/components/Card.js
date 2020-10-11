@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Stack from './layout/Stack';
 
-export default function Card ({ className, to, title, meta, body}) {
+export default function Card ({ className, to, media, title, meta, body}) {
   const styleClass = classnames(
     'c-card',
     className,
@@ -12,6 +12,7 @@ export default function Card ({ className, to, title, meta, body}) {
     <article className={styleClass}>
       <a className="c-card__link" href={to}>
         <Stack spacing="small">
+          {media && media}
           <header>
             <Stack spacing="x-small">
               <h3 className="c-card__title">

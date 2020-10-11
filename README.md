@@ -1,6 +1,6 @@
 # !important Gatsby theme
 
-A minimal blog theme.
+A minimal intrinsically responsive blog theme.
 
 ## Installation
 ### Install the Gatsby CLI
@@ -18,7 +18,7 @@ gatsby new gatsby-site https://github.com/gatsbyjs/gatsby-starter-hello-world
 cd gatsby-site
 ```
 
-### Install @davidway/gatsby-theme-not-important-blogá
+### Install @davidway/gatsby-theme-not-important-blog
 ```shell
 npm install @davidway/gatsby-theme-not-important-blog
 ```
@@ -29,8 +29,7 @@ or
 yarn add @davidway/gatsby-theme-not-important-blog
 ```
 
-Then add the theme to your `gatsby-config.js`. We'll use the long-form
-here for educational purposes.
+Then add the theme to your `gatsby-config.js`.
 
 ```javascript
 module.exports = {
@@ -59,8 +58,11 @@ An example file with the required frontmatter properties.
 
 ```md
 ---
+title: On Typography
 date: 2020-09-09
-title: Typography [H1]
+extract: Typography is the most important building block of your website
+featuredImage: ../images/posts/typography-reference.jpg
+featuredImageAlt: Image of type setting block
 tags:
 - Typography
 - Gatsby
@@ -88,9 +90,23 @@ This is a sentence with `inline code` in it.
 gatsby develop
 ```
 
-Note that this site doesn't _do_ anything, so you're seeing a missing
-resources error. Create a simple page in `src/pages/index.js` to see a
-page on the root url.
+Note that this theme doesn't _do_ anything until the appropriate assets have been added, 
+If you're seeing a missing resources error, create a simple page in `src/pages/index.js` to see a
+page on the root url. An example index page can be seen in the Example pages section.
+
+Add `.md` or `.mdx` files to the `src/posts` directory. These files will be transformed to pages at `/blog/[file-name]`.
+
+The following [frontmatter](https://jekyllrb.com/docs/front-matter/) values are required at the start of the post files:
+```yml
+---
+title: [Title of the post] # (*required)
+date: 2020-09-12 # (*required)
+extract: [extract describing the post]
+tags:
+- Syntax highlighting
+- Feature
+---
+```
 
 #### Example pages
 
@@ -321,4 +337,10 @@ import {
   Tag, // Displays meta information
   Card, // Summary link card
 } from "@davidway/gatsby-theme-not-important-blog";
+```
+
+## Contributing
+
+```
+npm publish --access public
 ```

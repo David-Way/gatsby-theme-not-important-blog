@@ -5,6 +5,10 @@ import useObserver from '../../hooks/ResizeObserver';
  
 function Reel({as: Element, spacing, children, className, ...otherProps}) {  
   const ref = useRef(null);
+  const containerClass = classnames(
+    'l-reel__container',
+    className,
+  );
   const styleClass = classnames(
     'l-reel',
     { [`l-reel--spacing:${spacing}`]: spacing },
@@ -16,12 +20,13 @@ function Reel({as: Element, spacing, children, className, ...otherProps}) {
   useObserver({callback: setIsOverflowing, element: ref});
 
   return (
-    <Element
-      ref={ref}
-      className={styleClass}
-      {...otherProps}
-    >
-      {children}
+    <Element className={containerClass} {...otherProps}>
+      <div
+        ref={ref}
+        className={styleClass}
+      >
+        {children}
+      </div>
     </Element>
   );
 }

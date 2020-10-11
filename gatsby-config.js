@@ -7,6 +7,15 @@ module.exports = ({ contentPath = "src/posts", basePath = "/" }) => ({
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `./src/images/posts`,
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
       resolve: `gatsby-plugin-sass`,
       options: {
         includePaths: [`node_modules`],
