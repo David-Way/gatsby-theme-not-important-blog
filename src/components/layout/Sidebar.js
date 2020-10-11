@@ -4,8 +4,8 @@ import classnames from 'classnames';
  
 function Sidebar({as: Element, padding, children, className, ...otherProps}) {
   const styleClass = classnames(
-    'l-box',
-    { [`l-box--padding:${padding}`]: padding },
+    'l-sidebar',
+    { [`l-sidebar--padding:${padding}`]: padding },
   );
   
   return (
