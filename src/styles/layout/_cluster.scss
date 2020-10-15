@@ -29,12 +29,14 @@
   }
 
   @each $key, $value in $spacing {
-    .l-cluster--spacing\:#{$key} {
-      margin: calc(#{$value} / 2 * -1);
-    }
+    @if $key != 'auto' {
+      .l-cluster--spacing\:#{$key} {
+        margin: calc((#{$value} / 2) * -1);   
+      }
 
-    .l-cluster--spacing\:#{$key} > * {
-      margin: calc(#{$value} / 2);
+      .l-cluster--spacing\:#{$key} > * {
+        margin: calc(#{$value} / 2);
+      }
     }
   }
 }
