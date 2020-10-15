@@ -1,9 +1,13 @@
 {
   "name": "@davidway/gatsby-theme-not-important-blog",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "main": "index.js",
   "author": "David Way",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:David-Way/gatsby-theme-not-important-blog.git"
+  },
   "dependencies": {
     "@carbon/themes": "^10.20.0",
     "@mdx-js/loader": "^1.6.18",
