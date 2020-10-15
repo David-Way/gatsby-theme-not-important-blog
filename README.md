@@ -53,6 +53,7 @@ module.exports = {
 ```
 
 Create a folder at `src/posts` to contain your markdown `.md` or `.mdx` files.
+Create a folder at `src/images/posts` to contain images referenced in you post files.
 
 An example file with the required frontmatter properties.
 
@@ -125,7 +126,8 @@ import {
   Card,
   Cluster,
   Link,
-} from "gatsby-theme-not-important-blog";
+} from "@davidway/gatsby-theme-not-important-blog";
+import Img from 'gatsby-image';
 
 export default function Home({ data: { site, allMdx: { nodes: posts }} }) {
   return (
@@ -145,6 +147,7 @@ export default function Home({ data: { site, allMdx: { nodes: posts }} }) {
           <Box padding="medium">
             <h2 className="u-mt:none">Recent post</h2>
             <Card
+              {...(posts[0].frontmatter.featuredImage ? { media: <Img fluid={posts[0].frontmatter.featuredImage.childImageSharp.fluid} alt={posts[0].frontmatter.featuredImageAlt} /> } : {})}
               {...(posts[0].slug ? { to: `/blog/${posts[0].slug}` } : {})}
               {...(posts[0].frontmatter.title ? { title: posts[0].frontmatter.title } : {})}
               {...(posts[0].frontmatter.date || posts[0].frontmatter.meta ? { meta: [posts[0].frontmatter.date,...posts[0].frontmatter.tags] } : {})}
@@ -166,6 +169,7 @@ export default function Home({ data: { site, allMdx: { nodes: posts }} }) {
               {posts.slice(1).map((post) => {
                 return (
                   <Card
+                    key={post.slug}
                     {...(post.slug ? { to: `/blog/${post.slug}` } : {})}
                     {...(post.frontmatter.title ? { title: post.frontmatter.title } : {})}
                     {...(post.frontmatter.date || post.frontmatter.meta ? { meta: [post.frontmatter.date,...post.frontmatter.tags] } : {})}
@@ -214,6 +218,14 @@ export const query = graphql`
           date
           extract
           tags
+          featuredImageAlt
+          featuredImage {
+            childImageSharp {
+              fluid(maxWidth: 800) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
         }
       }
     }
@@ -235,7 +247,7 @@ import {
   Card,
   Cluster,
   Link,
-} from "gatsby-theme-not-important-blog";
+} from "@davidway/gatsby-theme-not-important-blog";
 
 export default function Blog({ data: { site, allMdx: { nodes: posts }} }) {
   return (
@@ -251,7 +263,7 @@ export default function Blog({ data: { site, allMdx: { nodes: posts }} }) {
       </Center>
 
       <Center as="main">
-        {posts && posts.length >= 2 && (
+        {posts && posts.length >= 0 && (
           <>
             <Box padding="medium" className="u-pb:none">
               <Cluster justify="space-between" spacing="base">
@@ -264,6 +276,7 @@ export default function Blog({ data: { site, allMdx: { nodes: posts }} }) {
                 {posts.map((post) => {
                   return (
                     <Card
+                      key={post.slug}
                       {...(post.slug ? { to: `/blog/${post.slug}` } : {})}
                       {...(post.frontmatter.title ? { title: post.frontmatter.title } : {})}
                       {...(post.frontmatter.date || post.frontmatter.meta ? { meta: [post.frontmatter.date,...post.frontmatter.tags] } : {})}
