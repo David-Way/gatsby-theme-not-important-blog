@@ -10,7 +10,7 @@ module.exports = ({ contentPath = "src/posts", basePath = "/" }) => ({
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `./src/images/posts`,
+        path: `./src/images`,
       },
     },
     `gatsby-transformer-sharp`,
