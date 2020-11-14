@@ -10,11 +10,12 @@ module.exports = ({ contentPath = "src/posts", basePath = "/" }) => ({
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `./src/images/posts`,
+        path: `./src/images`,
       },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-remark-images`,
     {
       resolve: `gatsby-plugin-sass`,
       options: {
@@ -39,6 +40,14 @@ module.exports = ({ contentPath = "src/posts", basePath = "/" }) => ({
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
       },
     }
   ],
