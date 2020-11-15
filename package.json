@@ -18,6 +18,8 @@
     "gatsby-plugin-page-creator": "^2.3.30",
     "gatsby-plugin-react-helmet": "^3.3.13",
     "gatsby-plugin-sass": "^2.3.16",
+    "gatsby-plugin-sharp": "^2.8.0",
+    "gatsby-remark-images": "^3.5.1",
     "gatsby-source-filesystem": "^2.3.32",
     "gatsby-transformer-sharp": "^2.5.17",
     "node-sass": "^4.14.1",
